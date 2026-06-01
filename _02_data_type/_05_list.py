@@ -1,4 +1,4 @@
-
+from pygments.styles import friendly
 
 # sequence type(시퀀스 자료형)
 # - str, list, tuple
@@ -137,3 +137,77 @@ for v in lst:
 for index, v in enumerate(lst):
     print(f'lst[{index}]: {v}')
 
+# list api
+
+# list.count(값): list 내에 같은 값이 몇 개 있는가 ?
+print("--- list.count(값) ---")
+fruits = ["apple", "banana", "cherry","apple", "melon"]
+
+print('fruits.count("apple"): ', fruits.count("apple"))
+print('fruits.count("banana"): ', fruits.count("banana"))
+print('fruits.count("kiwi"): ', fruits.count("kiwi"))
+
+
+# sort : 정렬하다
+# list.sort() : 원본 리스트 내에서 정렬(in-place)
+# -> 원본 데이터가 변경(원본 데이터 손실)
+
+# sorted(list) : 정렬된 새 리스트를 반환(not-in-place)
+# -> 원본 데이터가 별도로 유지
+
+print("--- list.sort() : 원본 변경 ---")
+nums = [100, 30, 50, 20, 70]
+print("nums: ", nums)
+
+nums.sort() # 정렬 수행
+print("오름차순 정렬된 nums: ", nums)
+
+nums.sort(reverse=True) # 정렬 뒤집기 == 내림차순
+print("내림차순 정렬된 nums: ", nums)
+
+
+# key 속성 -> 정렬 기준 함수
+print("--- key 속성 -> 정렬 기준 함수 ---")
+fruits.append("kiwi")
+print("fruits: ", fruits)
+
+# len 함수를 정렬 기준으로 설정
+fruits.sort(key=len)
+print("정렬 후 fruits: ", fruits)
+
+# 커스텀 정렬기준함수
+def my_sort(elem):
+    return len(elem), elem # tuple로 우선순위 지정
+
+fruits.sort(key=my_sort)
+print(fruits)
+
+
+# sorted(list) : 원본 유지 정렬 (새 list 반환)
+print("--- sorted(list) ---")
+nums = [9, 2, 4, 7, 1]
+nums2 = sorted(nums)
+print("원본 nums: ", nums)
+print("정렬된 nums2: ", nums2)
+
+# list unpacking
+# - list == 변수의 묶음
+print("--- list unpacking ---")
+numbers = [10, 20, 30]
+# a = numbers[0]
+# b = numbers[1]
+# c = numbers[2]
+a, b, c = numbers
+print(a, b, c)
+
+# d = 0번 인덱스 요소(10)
+# *e = 1,2번 인덱스 요소 [20, 30]
+
+d, *e = numbers
+print(d, e)
+print(d, *e)
+
+numbers = [10, 20, 30, 40, 50]
+a, *b, c = numbers
+print(a, b, c)
+print(a, *b, c)
